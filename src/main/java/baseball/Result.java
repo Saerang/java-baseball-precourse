@@ -12,6 +12,10 @@ public class Result {
         this.ball = ball;
     }
 
+    public boolean isFinished() {
+        return strike == 3;
+    }
+
     public String getResultText() {
         if (this.strike == 0 && this.ball == 0) {
             return "낫싱";
@@ -49,4 +53,11 @@ public class Result {
         return this.ball + "볼";
     }
 
+    @Override
+    public String toString() {
+        return "Result{" +
+                "strike=" + strike +
+                ", ball=" + ball +
+                '}';
+    }
 }
