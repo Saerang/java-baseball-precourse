@@ -14,15 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RefereeTest {
 
-
-    private static Stream<Arguments> provideMatchTestData() { // argument source method
-        return Stream.of(
-                Arguments.of(Arrays.asList(1, 2, 3), "123", 3, 0),
-                Arguments.of(Arrays.asList(1, 2, 3), "125", 2, 1),
-                Arguments.of(Arrays.asList(1, 2, 3), "123", 3, 0)
-                        );
-    }
-
     @Test
     void 정답을_전부_맞출경우() {
         Referee referee = new Referee(new TestRandomNumberGenerator(Arrays.asList(1, 2, 3)));
