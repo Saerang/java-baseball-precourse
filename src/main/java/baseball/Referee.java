@@ -3,9 +3,7 @@ package baseball;
 import baseball.support.RandomNumberGenerator;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Referee {
     private final List<Integer> numbers = new ArrayList<>();
@@ -15,25 +13,11 @@ public class Referee {
     }
 
     public Result getResult(List<Integer> playerNumbers) {
-        validate(playerNumbers);
-
         int matchNumber = getMatchNumbers(playerNumbers);
         int strike = getStrikeCount(playerNumbers);
         int ball = matchNumber - strike;
 
         return new Result(strike, ball);
-    }
-
-    private void validate(List<Integer> playerNumbers) {
-        if (playerNumbers.size() != Const.NUMBER_COUNT) {
-            throw new IllegalArgumentException("3자리의 숫자를 입력애햐 합니다.");
-        }
-
-        Set<Integer> playerNumbersSet = new HashSet<>(playerNumbers);
-
-        if (playerNumbersSet.size() != Const.NUMBER_COUNT) {
-            throw new IllegalArgumentException("서로 다른 3자리의 숫자를 입력해야 합니다.");
-        }
     }
 
     private int getMatchNumbers(List<Integer> playerNumbers) {
@@ -65,5 +49,10 @@ public class Referee {
         return numbers.get(index).equals(playerNumbers.get(index)) ? 1 : 0;
     }
 
-
+    @Override
+    public String toString() {
+        return "Referee{" +
+                "numbers=" + numbers +
+                '}';
+    }
 }

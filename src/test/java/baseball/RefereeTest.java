@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 class RefereeTest {
@@ -58,24 +57,6 @@ class RefereeTest {
                 Arguments.of(Arrays.asList(1,2,3), Arrays.asList(3,1,2), "3볼"),
                 Arguments.of(Arrays.asList(1,2,3), Arrays.asList(1,3,2), "1스트라이크 2볼")
                         );
-    }
-
-    @Test
-    void 적은_숫자를_입력한_경우() {
-        Referee referee = new Referee(new TestRandomNumberGenerator(Arrays.asList(1, 2, 3)));
-
-        assertThatThrownBy(() -> referee.getResult(Arrays.asList(1, 2)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("3자리의 숫자를 입력애햐 합니다.");
-    }
-
-    @Test
-    void 같은_숫자를_입력한_경우() {
-        Referee referee = new Referee(new TestRandomNumberGenerator(Arrays.asList(1, 2, 3)));
-
-        assertThatThrownBy(() -> referee.getResult(Arrays.asList(1, 1, 1)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("서로 다른 3자리의 숫자를 입력해야 합니다.");
     }
 
 }
