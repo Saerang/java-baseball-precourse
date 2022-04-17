@@ -23,7 +23,9 @@
   [O] 숫자는 1~9까지 3자리 입력한다.  
   [O] 잘못된 숫자를 입력하면 IllegalArgumentException 을 발생시킨 후 종료한다.  
   
-  
+
+* Game 실행한다.  
+  [] Game 을 실행한다.
 
   
 
