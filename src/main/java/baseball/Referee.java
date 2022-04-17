@@ -1,7 +1,6 @@
 package baseball;
 
 import baseball.support.RandomNumberGenerator;
-import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,28 +8,32 @@ import java.util.List;
 import java.util.Set;
 
 public class Referee {
-    private final static int NUMBER_COUNT = 3;
     private final List<Integer> numbers = new ArrayList<>();
 
     public Referee(RandomNumberGenerator randomNumberGenerator) {
         numbers.addAll(randomNumberGenerator.generate());
     }
 
-    private void init() {
-        Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() < NUMBER_COUNT) {
-            numbers.add(Randoms.pickNumberInRange(1, 9));
-        }
-
-        this.numbers.addAll(numbers);
-    }
-
     public Result getResult(List<Integer> playerNumbers) {
+        validate(playerNumbers);
+
         int matchNumber = getMatchNumbers(playerNumbers);
         int strike = getStrikeCount(playerNumbers);
         int ball = matchNumber - strike;
 
         return new Result(strike, ball);
+    }
+
+    private void validate(List<Integer> playerNumbers) {
+        if (playerNumbers.size() != Const.NUMBER_COUNT) {
+            throw new IllegalArgumentException("3자리의 숫자를 입력애햐 합니다.");
+        }
+
+        Set<Integer> playerNumbersSet = new HashSet<>(playerNumbers);
+
+        if (playerNumbersSet.size() != Const.NUMBER_COUNT) {
+            throw new IllegalArgumentException("서로 다른 3자리의 숫자를 입력해야 합니다.");
+        }
     }
 
     private int getMatchNumbers(List<Integer> playerNumbers) {

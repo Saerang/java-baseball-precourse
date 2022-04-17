@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestRandomNumberGenerator implements RandomNumberGenerator {
-    private List<Integer> numbers = new ArrayList<>();
+    private final List<Integer> numbers = new ArrayList<>();
 
     public TestRandomNumberGenerator(List<Integer> numbers) {
         this.numbers.addAll(numbers);
